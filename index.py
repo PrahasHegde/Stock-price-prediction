@@ -57,9 +57,31 @@ lr = LinearRegression()
 lr.fit(X_train, y_train)
 lr_prediction = lr.predict(X_test)
 
+actual = y_test
+predicted = lr_prediction
+
+# Plot the actual values as a scatter plot
+plt.scatter(range(len(actual)), actual, color='blue', label='Actual')
+
+# Plot the predicted values as a line
+plt.scatter(range(len(actual)), predicted, color='red', label='Predicted')
+
+# A line between the actual point and predicted point
+for i in range(len(actual)):
+    plt.plot([i, i], [actual.iloc[i], predicted[i]], color='green', linestyle='--')
+
+plt.xlabel('Index')
+plt.ylabel('Value')
+plt.title('Actual vs Predicted Values (Stock price prediction)')
+plt.legend()
+plt.show()
+
+
 #metrics
 lr_mae = mean_absolute_error(y_test, lr_prediction)
 print(lr_mae) # 2.3867493377661844
+
+
 
 
 # #Random Forest Regressor
